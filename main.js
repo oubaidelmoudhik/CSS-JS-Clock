@@ -1,23 +1,21 @@
 //Select our three divs elements that we want to manipulate
-const secondHand = document.querySelector(".second-hand");
-const minutesHand = document.querySelector(".min-hand");
-const hoursHand = document.querySelector(".hour-hand");
+const secondHand = document.getElementById("second-hand");
+const minHand = document.getElementById(`min-hand`);
+const hourHand = document.getElementById("hour-hand");
 
-// define a function that will get the date and change the rotation of the divs based on it
-function setDate() {
-  const now = new Date();
-  const seconds = now.getSeconds();
-  const minutes = now.getMinutes();
-  const hours = now.getHours();
-  const secondsDegree = (seconds / 60) * 360 + 90;
-  const minutesDegree = (minutes / 60) * 360 + 90;
-  const hoursDegree = (hours / 12) * 360 + 90;
+let setTime = () => {
+  const date = new Date();
+  const seconds = date.getSeconds();
+  const minutes = date.getMinutes();
+  const hours = date.getHours();
+  const secDegree = (seconds / 60) * 360 + 90; //We add 90 to compensate the 90 added in CSS
+  const minDegree = (minutes / 60) * 360 + 90;
+  const hourDegree = (hours / 12) * 360 + 90;
 
-  secondHand.style.transform = `rotate(${secondsDegree}deg)`;
-  minutesHand.style.transform = `rotate(${minutesDegree}deg)`;
-  hoursHand.style.transform = `rotate(${hoursDegree}deg)`;
+  secondHand.style.transform = `rotate(${secDegree}deg)`;
+  minHand.style.transform = `rotate(${minDegree}deg)`;
+  hourHand.style.transform = `rotate(${hourDegree}deg)`;
   console.log(seconds);
-}
-
-// Set the function setDate to run every 1sec = 1000ms
-setInterval(setDate, 1000);
+};
+// Set the function setDate to run every 1sec = 1000ms, !!!WITHOUT ()!!!
+setInterval(setTime, 1000);
